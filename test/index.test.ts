@@ -25,5 +25,30 @@ describe("easyMemo", () => {
         expect(easyMemo(memoFn, 1, 3)).toBe(3);
         
         expect(memoFn).toBeCalledTimes(2);
-    })
+    });
+
+    it("should not execute again if an object will be returned", () => {
+        const memoFn = jest.fn().mockImplementation((value) => ({ randomProp: 1, value }));
+        clearCache();
+
+        expect(easyMemo(memoFn, "abc")).toEqual({ randomProp: 1, value: "abc" });
+        expect(easyMemo(memoFn, "abc")).toEqual({ randomProp: 1, value: "abc" });
+
+        expect(memoFn).toBeCalledTimes(1);
+    });
+
+    it("should return the same object if the cache hits", () => {
+        const memoFn = jest.fn().mockImplementation((value) => ({ randomProp: 1, value }));
+        clearCache();
+
+        const deepEqual = easyMemo(memoFn, "abc");
+        
+        // Verify this is only a shallow comparison and not a deep equality: === returns false
+        expect(deepEqual).toEqual({ randomProp: 1, value: "abc" });
+        expect(deepEqual).not.toBe({ randomProp: 1, value: "abc" });
+
+        // Verify that we receive the very same object: === returns true
+        expect(easyMemo(memoFn, "abc")).toBe(deepEqual);
+        expect(memoFn).toBeCalledTimes(1);
+    });
 })

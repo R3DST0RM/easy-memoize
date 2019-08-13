@@ -1,0 +1,41 @@
+{
+  "name": "easy-memoize",
+  "version": "0.1.0",
+  "description": "Memoization made easy",
+  "main": "src/index.ts",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --config jestconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/R3DST0RM/easy-memoize.git"
+  },
+  "keywords": [
+    "memo",
+    "react",
+    "memoization",
+    "typescript",
+    "javascript"
+  ],
+  "author": "Dominik Schwarzbauer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/R3DST0RM/easy-memoize/issues"
+  },
+  "homepage": "https://github.com/R3DST0RM/easy-memoize#readme",
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.3"
+  }
+}

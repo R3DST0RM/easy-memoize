@@ -1,16 +1,16 @@
-import easyMemo, { clearCache } from "../src/index";
+import easyMemo, { clearCache } from "../src";
 
 describe("easyMemo", () => {
 
     it("should return the result of a function", () => {
-        expect(easyMemo((a, b) => a * b, 1, 2)).toBe(2);
+        expect(easyMemo((a, b) => a * b)(1, 2)).toBe(2);
     });
 
     it("should not execute again if dependencies are the same", () => {
         const memoFn = jest.fn().mockImplementation((a, b) => a * b);
         
-        expect(easyMemo(memoFn, 1, 2)).toBe(2);
-        expect(easyMemo(memoFn, 1, 2)).toBe(2);
+        expect(easyMemo(memoFn)(1, 2)).toBe(2);
+        expect(easyMemo(memoFn)(1, 2)).toBe(2);
 
         expect(memoFn).toBeCalledTimes(1);
     });
@@ -19,10 +19,10 @@ describe("easyMemo", () => {
         const memoFn = jest.fn().mockImplementation((a, b) => a * b);
         clearCache();
 
-        expect(easyMemo(memoFn, 1, 2)).toBe(2);
-        expect(easyMemo(memoFn, 1, 3)).toBe(3);
-        expect(easyMemo(memoFn, 1, 2)).toBe(2);
-        expect(easyMemo(memoFn, 1, 3)).toBe(3);
+        expect(easyMemo(memoFn)(1, 2)).toBe(2);
+        expect(easyMemo(memoFn)(1, 3)).toBe(3);
+        expect(easyMemo(memoFn)(1, 2)).toBe(2);
+        expect(easyMemo(memoFn)(1, 3)).toBe(3);
         
         expect(memoFn).toBeCalledTimes(2);
     });
@@ -31,8 +31,8 @@ describe("easyMemo", () => {
         const memoFn = jest.fn().mockImplementation((value) => ({ randomProp: 1, value }));
         clearCache();
 
-        expect(easyMemo(memoFn, "abc")).toEqual({ randomProp: 1, value: "abc" });
-        expect(easyMemo(memoFn, "abc")).toEqual({ randomProp: 1, value: "abc" });
+        expect(easyMemo(memoFn)("abc")).toEqual({ randomProp: 1, value: "abc" });
+        expect(easyMemo(memoFn)("abc")).toEqual({ randomProp: 1, value: "abc" });
 
         expect(memoFn).toBeCalledTimes(1);
     });
@@ -41,14 +41,26 @@ describe("easyMemo", () => {
         const memoFn = jest.fn().mockImplementation((value) => ({ randomProp: 1, value }));
         clearCache();
 
-        const deepEqual = easyMemo(memoFn, "abc");
+        const deepEqual = easyMemo(memoFn)("abc");
         
         // Verify this is only a shallow comparison and not a deep equality: === returns false
         expect(deepEqual).toEqual({ randomProp: 1, value: "abc" });
         expect(deepEqual).not.toBe({ randomProp: 1, value: "abc" });
 
         // Verify that we receive the very same object: === returns true
-        expect(easyMemo(memoFn, "abc")).toBe(deepEqual);
+        expect(easyMemo(memoFn)("abc")).toBe(deepEqual);
         expect(memoFn).toBeCalledTimes(1);
     });
-})
+});
+
+describe("easyMemo - sample memoization", () => {
+   it("returns cached value for fibonacci", () => {
+       const fibonacci = (num: number): number => num <= 1 ? 1 : fibonacci(num - 1) + fibonacci(num - 2);
+       const heavyCalc = jest.fn().mockImplementation(() => fibonacci(10));
+
+       expect(easyMemo(heavyCalc)()).toBe(89);
+       expect(easyMemo(heavyCalc)()).toBe(89);
+
+       expect(heavyCalc).toBeCalledTimes(1);
+   })
+});

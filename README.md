@@ -3,7 +3,8 @@ Memoization should be made easy. easy-memoize will help you with it.
 
 # Usage
 
-The usage of this library is as easy as 1, 2, 3. Just wrap it around your called function and pass in the arguments as "dependencies".
+The usage of this library is as easy as 1, 2, 3.
+Just wrap it around your called function and pass in the arguments, like you normally would.
 
 ```javascript
 import easyMemo from "easy-memoize";
@@ -11,8 +12,32 @@ import easyMemo from "easy-memoize";
 /* ... */
 
 // On first call calculates the result of 1 * 2, if this code every gets called again, the cached result will be returned.
-easyMemo((a, b) => a * b, 1, 2); // returns: 2
+easyMemo((a, b) => a * b)(1, 2); // returns: 2
 
 // It returns the same object if the dependency is the same ( === safe)
-easyMemo((value) => ({ value, randomProp: "abc" }), "R3DST0RM"); // returns: { value: "R3DST0RM", randomProp: "abc" }
+easyMemo((value) => ({ value, randomProp: "abc" }))("R3DST0RM"); // returns: { value: "R3DST0RM", randomProp: "abc" }
+```
+
+# How it works
+
+The memoization is done by storing the function and its arguments. If one of it changes, the function will be executed again.
+
+Let's assume there is a function called: `heavyCalculation` with the following implementation:
+
+```javascript
+const fibonacci = (num) => num <= 1 ? 1 : fibonacci(num - 1) + fibonacci(num - 2);
+
+const heavyCalculation = () => fibonacci(40);
+```
+
+The bet is, you would not want it to run again and again everytime the result is needed, just once, until something changes.
+
+Using easy-memoize, this would be achieved wrapping `heavyCalculation` with the memoize function:
+
+```javascript
+const easyHeavyCalculation = easyMemo(heavyCalculation) // returns a new memoized function
+
+// By running easyHeavyCalculation(); a cached value will be returned if it gets executed a second time
+console.log(easyHeavyCalculation());
+console.log(easyHeavyCalculation()); // returns cached value
 ```

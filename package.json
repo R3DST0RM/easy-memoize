@@ -33,9 +33,12 @@
   },
   "homepage": "https://github.com/R3DST0RM/easy-memoize#readme",
   "devDependencies": {
+    "jest": "^24.8.0",
     "prettier": "^1.18.2",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "@types/jest": "^24.0.17",
+    "ts-jest": "^24.0.2"
   }
 }

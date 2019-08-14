@@ -1,4 +1,4 @@
-import easyMemo, { clearCache } from "../src";
+import easyMemo, { clear } from "../src";
 
 describe("easyMemo", () => {
 
@@ -17,7 +17,7 @@ describe("easyMemo", () => {
 
     it("should not execute again if another function has been run in the mean time", () => {
         const memoFn = jest.fn().mockImplementation((a, b) => a * b);
-        clearCache();
+        clear();
 
         expect(easyMemo(memoFn, [])(1, 2)).toBe(2);
         expect(easyMemo(memoFn, [])(1, 3)).toBe(3);
@@ -29,7 +29,7 @@ describe("easyMemo", () => {
 
     it("should not execute again if an object will be returned", () => {
         const memoFn = jest.fn().mockImplementation((value) => ({ randomProp: 1, value }));
-        clearCache();
+        clear();
 
         expect(easyMemo(memoFn, [])("abc")).toEqual({ randomProp: 1, value: "abc" });
         expect(easyMemo(memoFn, [])("abc")).toEqual({ randomProp: 1, value: "abc" });
@@ -39,7 +39,7 @@ describe("easyMemo", () => {
 
     it("should return the same object if the cache hits", () => {
         const memoFn = jest.fn().mockImplementation((value) => ({ randomProp: 1, value }));
-        clearCache();
+        clear();
 
         const deepEqual = easyMemo(memoFn, [])("abc");
         

@@ -61,6 +61,16 @@ Where it is possible to memoize a function call based on it's dependencies.
 
 Therefore this library strives to be as efficient as possible while maintain the easiness of `useCallback`.
 
+# Contribute
+
+Your contribution is highly wanted. If there is a feature or issue you want to work an feel free to submit a PR.
+
+# Donate
+
+If you like this library and would like to support this work feel free to donate here:
+
+![PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=dominik.schwarzbauer%40googlemail.com&item_name=easy-memoize+library&currency_code=USD&source=url)
+
 # License
 
 Licensed under MIT License

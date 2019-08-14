@@ -11,8 +11,8 @@ import easyMemo from "easy-memoize";
 
 /* ... */
 
-// On first call calculates the result of 1 * 2, if this code every gets called again, the cached result will be returned.
-easyMemo((a, b) => a * b)(1, 2); // returns: 2
+// On first call calculates the result of 1 * 2, if this code ever gets called again, the cached result will be returned.
+easyMemo((a, b) => a * b, [])(1, 2); // returns: 2
 
 // It returns the same object if the dependency is the same ( === safe)
 easyMemo((value) => ({ value, randomProp: "abc" }), [])("R3DST0RM"); // returns: { value: "R3DST0RM", randomProp: "abc" }
@@ -23,7 +23,7 @@ easyMemo((value) => ({ value, randomProp: "abc" }), [])("R3DST0RM"); // returns:
 The memoize function receives two input params, the function to memoize as well as an array of dependencies. When those dependencies change,
 the function will be executed again otherwise a cached result will be returned.
 
-E.g: `easyMemo(() => { return anotherFunction() };, [anotherFunction])`
+E.g: `easyMemo(() => { return anotherFunction() }, [anotherFunction])`
 
 If `anotherFunction` changes, the memoized function will be executed again.
 

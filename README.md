@@ -15,8 +15,17 @@ import easyMemo from "easy-memoize";
 easyMemo((a, b) => a * b)(1, 2); // returns: 2
 
 // It returns the same object if the dependency is the same ( === safe)
-easyMemo((value) => ({ value, randomProp: "abc" }))("R3DST0RM"); // returns: { value: "R3DST0RM", randomProp: "abc" }
+easyMemo((value) => ({ value, randomProp: "abc" }), [])("R3DST0RM"); // returns: { value: "R3DST0RM", randomProp: "abc" }
 ```
+
+## Memoize Signature
+
+The memoize function receives two input params, the function to memoize as well as an array of dependencies. When those dependencies change,
+the function will be executed again otherwise a cached result will be returned.
+
+E.g: `easyMemo(() => { return anotherFunction() };, [anotherFunction])`
+
+If `anotherFunction` changes, the memoized function will be executed again.
 
 # How it works
 
@@ -35,9 +44,20 @@ The bet is, you would not want it to run again and again everytime the result is
 Using easy-memoize, this would be achieved wrapping `heavyCalculation` with the memoize function:
 
 ```javascript
-const easyHeavyCalculation = easyMemo(heavyCalculation) // returns a new memoized function
+const easyHeavyCalculation = easyMemo(heavyCalculation, []) // returns a new memoized function
 
 // By running easyHeavyCalculation(); a cached value will be returned if it gets executed a second time
 console.log(easyHeavyCalculation());
 console.log(easyHeavyCalculation()); // returns cached value
 ```
+
+# Motivation
+
+As motivation served the `useCallback` function from React.
+Where it is possible to memoize a function call based on it's dependencies.
+
+Therefore this library strives to be as efficient as possible while maintain the easiness of `useCallback`.
+
+# License
+
+Licensed under MIT License

@@ -1,6 +1,6 @@
 {
   "name": "easy-memoize",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Memoization made easy",
   "main": "src/index.ts",
   "types": "lib/index.d.ts",

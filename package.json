@@ -1,6 +1,6 @@
 {
   "name": "easy-memoize",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Memoization made easy",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -44,6 +44,6 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "array.from": "^1.0.3"
+    "core-js": "^3.2.1"
   }
 }

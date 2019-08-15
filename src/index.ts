@@ -1,4 +1,5 @@
-import "array.from";
+import "core-js/features/array/from";
+import "core-js/features/map/index";
 
 const memoCache = new Map();
 let maxCacheSize = 10;

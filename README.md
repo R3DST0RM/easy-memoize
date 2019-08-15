@@ -30,6 +30,13 @@ E.g: `easyMemo(() => { return anotherFunction() }, [anotherFunction])`
 
 If `anotherFunction` changes, the memoized function will be executed again.
 
+## Memoize Limits
+
+The standard cache size of one function is at 10. Means, 10 results will be cached. 
+If a function exceeds this limit, the oldest results will be removed.
+
+Using `overrideMaxCacheSize(num: Number)` allows you to override this default behavior.
+
 # How it works
 
 The memoization is done by storing the function and its arguments. If one of it changes, the function will be executed again.
@@ -64,6 +71,14 @@ Therefore this library strives to be as efficient as possible while maintain the
 # Contribute
 
 Your contribution is highly wanted. If there is a feature or issue you want to work an feel free to submit a PR.
+
+# Browser Support
+
+We care about browser support. Therefore this library has support for Internet Explorer 11
+
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) |
+--- | --- | --- | --- | --- | --- |
+Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ | 11 ✔ |
 
 # Donate
 

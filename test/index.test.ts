@@ -1,4 +1,4 @@
-import easyMemo, { clear } from "../src";
+import easyMemo, { clear, overrideMaxCacheSize } from "../src";
 
 describe("easyMemo", () => {
 
@@ -78,4 +78,31 @@ describe("easyMemo - sample memoization", () => {
 
        expect(heavyCalc).toBeCalledTimes(1);
    })
+});
+
+describe("easyMemo - Garbage collection", () => {
+    it("invalidates the first memoized result after cachSize is exceeded", () => {
+        clear();
+        const memoFn = jest.fn().mockImplementation((a, b) => a * b);
+
+        for (let i = 0; i < 11; i++) {
+            expect(easyMemo(memoFn, [])(1, i)).toBe(i);
+        }
+        expect(memoFn).toBeCalledTimes(11);
+        expect(easyMemo(memoFn, [])(1, 0)).toBe(0);
+        expect(memoFn).toBeCalledTimes(12);
+    });
+
+    it("allows to override the cache size and respects that", () => {
+        clear();
+        const memoFn = jest.fn().mockImplementation((a, b) => a * b);
+        overrideMaxCacheSize(2);
+
+        for (let i = 0; i < 3; i++) {
+            expect(easyMemo(memoFn, [])(1, i)).toBe(i);
+        }
+        expect(memoFn).toBeCalledTimes(3);
+        expect(easyMemo(memoFn, [])(1, 0)).toBe(0);
+        expect(memoFn).toBeCalledTimes(4);
+    });
 });

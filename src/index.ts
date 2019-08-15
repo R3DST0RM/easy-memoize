@@ -30,7 +30,7 @@ export function clear() {
 
 const getMatchingMapKeysFor = (partialKey: string): string[] => {
   return Array.from(memoCache.keys()).filter((singleKey: string) => singleKey.includes(partialKey));
-}
+};
 
 const cleanUpMemo = <T>(memoFn: (...args: any[]) => T) => {
   const matchingKeys = getMatchingMapKeysFor(memoFn.toString());
@@ -41,7 +41,7 @@ const cleanUpMemo = <T>(memoFn: (...args: any[]) => T) => {
       memoCache.delete(matchingKeys[i]);
     }
   }
-}
+};
 
 const cacheKeyFor = (memoFn: (...args: any[]) => unknown, deps: any[], ...args: any[]): string => {
   return `${memoFn.toString()}-${deps.toString()}-${args.toString()}`;

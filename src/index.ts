@@ -56,5 +56,5 @@ const cacheKeyFromStrategy = (dependency: any) => {
         return JSON.stringify(dependency);
     }
 
-    return dependency.toString();
+    return dependency === null || dependency === undefined ? "" : dependency.toString();
 }

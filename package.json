@@ -1,8 +1,8 @@
 {
   "name": "easy-memoize",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Memoization made easy",
-  "main": "src/index.ts",
+  "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",

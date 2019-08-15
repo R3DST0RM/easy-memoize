@@ -1,6 +1,6 @@
 {
   "name": "easy-memoize",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Memoization made easy",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

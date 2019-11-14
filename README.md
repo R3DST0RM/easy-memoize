@@ -3,6 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/R3DST0RM/easy-memoize/badge.svg?branch=master)](https://coveralls.io/github/R3DST0RM/easy-memoize?branch=master)
 
 Memoization is a simple thing and should be made easy to implement. The library `easy-memoize` will help you with it.
+For an enhanced documentation please visit the wiki pages.
 
 # Usage
 

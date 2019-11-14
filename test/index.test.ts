@@ -161,4 +161,17 @@ describe("easyMemo - Dependencies", () => {
         expect(easyMemo(memoFn, [undefined])()).toBe(5);
         expect(memoFn).toBeCalledTimes(1);
     });
-})
+
+    it("dependency array is memoized correctly", () => {
+        let c = 2;
+        const memoFn = jest.fn().mockImplementation(() => 5 * c);
+
+        expect(easyMemo(memoFn, [c])()).toBe(10);
+        c = 5;
+        expect(easyMemo(memoFn, [c])()).toBe(25);
+        c = 2;
+        expect(easyMemo(memoFn, [c])()).toBe(10);
+
+        expect(memoFn).toBeCalledTimes(2);
+    });
+});

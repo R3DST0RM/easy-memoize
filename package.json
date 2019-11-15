@@ -1,9 +1,12 @@
 {
   "name": "easy-memoize",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Memoization made easy",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
@@ -23,9 +26,11 @@
   "keywords": [
     "memo",
     "react",
+    "memoize",
     "memoization",
     "typescript",
-    "javascript"
+    "javascript",
+    "redux"
   ],
   "author": "Dominik Schwarzbauer",
   "license": "MIT",

@@ -21,10 +21,17 @@ export default function easyMemo<T = unknown>(memoFn: (...args: any[]) => T, dep
     };
 }
 
+/**
+ * Overrides the default cache size of 10.
+ * @param size number - Maximum value of cached functions
+ */
 export function overrideMaxCacheSize(size: number) {
     maxCacheSize = size;
 }
 
+/**
+ * Clear the memoization cache.
+ */
 export function clear() {
     memoCache.clear();
 }

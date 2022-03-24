@@ -50,5 +50,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.com"
   }
 }

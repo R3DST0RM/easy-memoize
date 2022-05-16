@@ -1,5 +1,5 @@
 # easy-memoize
-[![Build Status](https://travis-ci.org/R3DST0RM/easy-memoize.svg?branch=master)](https://travis-ci.org/R3DST0RM/easy-memoize)
+[![Build Status](https://github.com/R3DST0RM/easy-memoize/actions/workflows/build.yml/badge.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/R3DST0RM/easy-memoize/badge.svg?branch=master)](https://coveralls.io/github/R3DST0RM/easy-memoize?branch=master)
 
 Memoization is a simple thing and should be made easy to implement. The library `easy-memoize` will help you with it.

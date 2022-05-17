@@ -1,6 +1,6 @@
 {
   "name": "easy-memoize",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Memoization made easy",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -12,7 +12,6 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json",
-    "coveralls": "jest --config jestconfig.json --coverage --coverageReporters=text-lcov | coveralls",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
@@ -40,7 +39,6 @@
   "homepage": "https://github.com/R3DST0RM/easy-memoize#readme",
   "devDependencies": {
     "@types/jest": "27.5.1",
-    "coveralls": "3.1.1",
     "jest": "28.1.0",
     "prettier": "2.6.2",
     "ts-jest": "28.0.2",

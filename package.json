@@ -38,8 +38,8 @@
   },
   "homepage": "https://github.com/R3DST0RM/easy-memoize#readme",
   "devDependencies": {
-    "@types/jest": "27.5.1",
-    "jest": "28.1.0",
+    "@types/jest": "27.5.2",
+    "jest": "28.1.1",
     "prettier": "2.6.2",
     "ts-jest": "28.0.3",
     "tslint": "6.1.3",

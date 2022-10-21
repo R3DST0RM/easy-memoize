@@ -5,6 +5,14 @@
 Memoization is a simple thing and should be made easy to implement. The library `easy-memoize` will help you with it.
 For an enhanced documentation please visit the wiki pages.
 
+# Installation
+
+The package can be installed using `npm` or `yarn`. For example:
+
+```bash
+npm install --save easy-memoize
+```
+
 # Usage
 
 The usage of this library is as easy as 1, 2, 3.
